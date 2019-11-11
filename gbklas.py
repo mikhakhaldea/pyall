@@ -30,17 +30,17 @@ class Bermain():
 		print ("Permainan ke "+ str(Bermain.permainanke) +"\n")
 		pil = input("Pilihan Anda, Gunting, Batu, Kertas (G,B,K)? ") #inputan anda
 		cr = (pil.upper(),tbrdm[rdm]) #cari pilihan di tupple tbrdm
-		if cr in tb: #pencarian di tupple tb
-			banding = int(tb[cr]) #ambil nilai di tupple tb. jika 1 menang 0 draw. -1 kalah
-			if banding == 1 :		
+		#if cr in tb: #pencarian di tupple tb
+		banding = int(tb[cr]) #ambil nilai di tupple tb. jika 1 menang 0 draw. -1 kalah
+		if banding == 1 :		
 				print ("Sesi ini Anda Menang")
 				Bermain.nilaiku +=1 #tambah 1 nilai
 
-			elif banding == -1:
+		elif banding == -1:
 				print ("Sesi ini Anda Kalah ")
 				Bermain.nilaikom +=1 #nilai dikurangi 1
 
-			else:
+		else:
 				print ("Draw")
 				#Bermain.draw +=1 #nilai ditambah 0
 
