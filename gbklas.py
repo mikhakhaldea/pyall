@@ -2,9 +2,9 @@
 from random import randrange
 
 
-tbrdm = {1:'G',2:'B',3:'K'}
+tbrdm = {1:'G',2:'B',3:'K'}#tuple Pilihan G B K(Gunting Batu Kertas)
 tb={}
-tb[('G','B')]=-1
+tb[('G','B')]=-1 #Tuple Semua kemungkinan G B K, jika menang nilai 1, kalah -1 dan draw 0
 tb[('G','K')]=1
 tb[('G','G')]= 0
 tb[('B','G')]= 1
