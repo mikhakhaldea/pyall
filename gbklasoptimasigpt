@@ -1,0 +1,61 @@
+import random
+
+options = ('G', 'B', 'K') # tuple pilihan G, B, K (gunting, batu, kertas)
+
+winning_conditions = (
+    ('G', 'B', -1), # tuple semua kemungkinan G, B, K
+    ('G', 'K', 1),  # jika menang nilai 1, kalah -1, dan draw 0
+    ('B', 'G', 1),
+    ('B', 'K', -1),
+    ('K', 'G', -1),
+    ('K', 'B', 1),
+)
+
+class Game:
+    def __init__(self):
+        self.player_score = 0
+        self.computer_score = 0
+
+    def play(self):
+        computer_choice = random.choice(options) # ambil pilihan komputer secara acak
+
+        player_choice = input("Pilihan Anda, Gunting, Batu, Kertas (G,B,K)? ").upper() # input dari player
+        for choice in options:
+            if player_choice.startswith(choice):
+                player_choice = choice
+
+        print(f"Permainan ke {self.game_number}\n")
+        print(f"Pilihan Anda: {player_choice}")
+        print(f"Pilihan komputer: {computer_choice}")
+
+        if player_choice == computer_choice:
+            print("Draw!")
+        else:
+            for condition in winning_conditions:
+                if player_choice == condition[0] and computer_choice == condition[1]:
+                    print("Anda Menang!" if condition[2] == 1 else "Anda Kalah!")
+                    self.player_score += condition[2]
+                    self.computer_score -= condition[2]
+
+    @classmethod
+    def start(cls):
+        game_count = int(input("Anda ingin main berapa kali? "))
+        for game_number in range(1, game_count+1):
+            game = cls()
+            game.game_number = game_number
+            game.play()
+
+        print(f"\n\nNilai Akhir Dari {game_count} Pertandingan Adalah")
+        print(f"Nilai Anda: {game.player_score}")
+        print(f"Nilai Komputer: {game.computer_score}")
+        print(f"Draw: {game_count - game.player_score - game.computer_score}")
+
+        if game.player_score > game.computer_score:
+            print("Selamat, Anda Menang di Game ini!")
+        elif game.player_score < game.computer_score:
+            print("Maaf, Anda Kalah di Game ini.")
+        else:
+            print("Anda Seri di Game ini.")
+
+if __name__ == '__main__':
+    Game.start()
